@@ -17,12 +17,38 @@ import {
   ChevronLeft,
   ChevronRight,
   FolderOpen,
+  Globe,
+  ListChecks,
+  Server,
+  BarChart3,
+  ShieldCheck,
+  Layers,
+  ClipboardList,
+  Award,
 } from "lucide-react";
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-  { name: "Licensing", href: "/licensing", icon: FileCheck },
+  {
+    name: "Licensing",
+    icon: FileCheck,
+    children: [
+      { name: "Applications", href: "/licensing", icon: ClipboardList },
+      { name: "Sectors & Types", href: "/licensing/types", icon: Layers },
+      { name: "Issued Licences", href: "/licensing/licences", icon: Award },
+    ],
+  },
   { name: "Complaints", href: "/complaints", icon: MessageSquareWarning },
+  {
+    name: "Domains",
+    icon: Globe,
+    children: [
+      { name: "Registry", href: "/domains", icon: Server },
+      { name: "Applications", href: "/domains/applications", icon: ListChecks },
+      { name: "Zones", href: "/domains/zones", icon: ShieldCheck },
+      { name: "Statistics", href: "/domains/stats", icon: BarChart3 },
+    ],
+  },
   {
     name: "Content",
     icon: FolderOpen,
@@ -39,9 +65,21 @@ const navigation = [
 export function Sidebar() {
   const pathname = usePathname();
   const [collapsed, setCollapsed] = useState(false);
-  const [cmsOpen, setCmsOpen] = useState(
-    pathname.startsWith("/cms")
-  );
+  const [openGroups, setOpenGroups] = useState<Record<string, boolean>>(() => {
+    const initial: Record<string, boolean> = {};
+    navigation.forEach((item) => {
+      if (item.children) {
+        initial[item.name] = item.children.some((child) =>
+          pathname.startsWith(child.href)
+        );
+      }
+    });
+    return initial;
+  });
+
+  const toggleGroup = (name: string) => {
+    setOpenGroups((prev) => ({ ...prev, [name]: !prev[name] }));
+  };
 
   return (
     <aside
@@ -74,7 +112,7 @@ export function Sidebar() {
             return (
               <div key={item.name}>
                 <button
-                  onClick={() => setCmsOpen(!cmsOpen)}
+                  onClick={() => toggleGroup(item.name)}
                   className={cn(
                     "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
                     isChildActive
@@ -89,13 +127,13 @@ export function Sidebar() {
                       <ChevronRight
                         className={cn(
                           "h-4 w-4 transition-transform",
-                          cmsOpen && "rotate-90"
+                          openGroups[item.name] && "rotate-90"
                         )}
                       />
                     </>
                   )}
                 </button>
-                {cmsOpen && !collapsed && (
+                {openGroups[item.name] && !collapsed && (
                   <div className="ml-5 mt-1 space-y-0.5 border-l border-gray-200 pl-3">
                     {item.children.map((child) => {
                       const isActive = pathname === child.href;

@@ -6,3 +6,4 @@ export { tendersClient } from "./tenders";
 export { newsClient } from "./news";
 export { analyticsClient } from "./analytics";
 export { notificationsClient } from "./notifications";
+export { domainsClient } from "./domains";

@@ -22,11 +22,13 @@ const statusColors: Record<string, string> = {
   OPEN: "bg-emerald-50 text-emerald-700",
   CLOSING_SOON: "bg-amber-50 text-amber-700",
   AWARDED: "bg-blue-50 text-blue-700",
-  // Licence
+  // Licence / Domain
   ACTIVE: "bg-emerald-50 text-emerald-700",
   SUSPENDED: "bg-amber-50 text-amber-700",
   EXPIRED: "bg-red-50 text-red-600",
   REVOKED: "bg-red-50 text-red-700",
+  PENDING_DELETE: "bg-orange-50 text-orange-700",
+  DELETED: "bg-gray-100 text-gray-500",
 };
 
 const priorityColors: Record<string, string> = {

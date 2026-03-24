@@ -9,8 +9,14 @@ import Link from "next/link";
 
 const pageTitles: Record<string, string> = {
   "/dashboard": "Dashboard",
-  "/licensing": "Licensing Management",
+  "/licensing": "Licensing Applications",
+  "/licensing/types": "Sectors & Licence Types",
+  "/licensing/licences": "Issued Licences",
   "/complaints": "Complaints Management",
+  "/domains": "Domain Registry",
+  "/domains/applications": "Domain Applications",
+  "/domains/zones": "Domain Zones",
+  "/domains/stats": "Domain Statistics",
   "/cms/news": "News Articles",
   "/cms/publications": "Publications",
   "/cms/tenders": "Tenders",

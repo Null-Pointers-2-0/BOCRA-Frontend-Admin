@@ -242,13 +242,21 @@ export default function PublicationsPage() {
               </div>
               <div>
                 <label className="text-sm font-medium text-gray-700">Category</label>
-                <input
-                  type="text"
+                <select
                   value={form.category}
                   onChange={(e) => setForm((f) => ({ ...f, category: e.target.value }))}
-                  className="w-full mt-1 px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#0073ae]"
-                  placeholder="e.g., Annual Report, Policy Document..."
-                />
+                  className="w-full mt-1 px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#0073ae] bg-white"
+                >
+                  <option value="">Select a category…</option>
+                  <option value="REGULATION">Regulation</option>
+                  <option value="POLICY">Policy</option>
+                  <option value="REPORT">Report</option>
+                  <option value="GUIDELINE">Guideline</option>
+                  <option value="CONSULTATION">Consultation Paper</option>
+                  <option value="ANNUAL_REPORT">Annual Report</option>
+                  <option value="STRATEGY">Strategy Document</option>
+                  <option value="OTHER">Other</option>
+                </select>
               </div>
               <div>
                 <label className="text-sm font-medium text-gray-700">Description</label>
@@ -273,7 +281,7 @@ export default function PublicationsPage() {
               <button onClick={() => setEditorOpen(false)} className="px-4 py-2 text-sm rounded-lg border border-gray-300 hover:bg-gray-50">Cancel</button>
               <button
                 onClick={handleSave}
-                disabled={saving || !form.title.trim()}
+                disabled={saving || !form.title.trim() || !form.category}
                 className="px-4 py-2 text-sm rounded-lg bg-[#0073ae] text-white hover:bg-[#005f8f] disabled:opacity-50 flex items-center gap-2"
               >
                 {saving && <Loader2 className="h-4 w-4 animate-spin" />}

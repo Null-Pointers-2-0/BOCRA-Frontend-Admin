@@ -9,7 +9,7 @@ import type {
 
 export const publicationsClient = {
   list: (params?: StaffPublicationListParams) =>
-    apiClient<StaffPublicationListItem[]>("/publications/staff/", {
+    apiClient<StaffPublicationListItem[]>("/publications/staff/list/", {
       params: params as Record<string, string | number | boolean | undefined>,
     }),
 
@@ -40,13 +40,13 @@ export const publicationsClient = {
       Object.entries(data).forEach(([key, value]) => {
         if (value !== undefined) formData.append(key, value as string | Blob);
       });
-      return apiClient<StaffPublicationDetail>(`/publications/staff/${id}/`, {
+      return apiClient<StaffPublicationDetail>(`/publications/staff/${id}/edit/`, {
         method: "PATCH",
         body: formData,
         isFormData: true,
       });
     }
-    return apiClient<StaffPublicationDetail>(`/publications/staff/${id}/`, {
+    return apiClient<StaffPublicationDetail>(`/publications/staff/${id}/edit/`, {
       method: "PATCH",
       body: data,
     });
@@ -59,5 +59,5 @@ export const publicationsClient = {
     apiClient<StaffPublicationDetail>(`/publications/staff/${id}/archive/`, { method: "PATCH" }),
 
   delete: (id: string) =>
-    apiClient(`/publications/staff/${id}/`, { method: "DELETE" }),
+    apiClient(`/publications/staff/${id}/delete/`, { method: "DELETE" }),
 };

@@ -232,13 +232,18 @@ export default function NewsPage() {
               </div>
               <div>
                 <label className="text-sm font-medium text-gray-700">Category</label>
-                <input
-                  type="text"
+                <select
                   value={form.category}
                   onChange={(e) => setForm((f) => ({ ...f, category: e.target.value }))}
-                  className="w-full mt-1 px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#0073ae]"
-                  placeholder="e.g., GENERAL, REGULATORY, INDUSTRY..."
-                />
+                  className="w-full mt-1 px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#0073ae] bg-white"
+                >
+                  <option value="">Select a category…</option>
+                  <option value="PRESS_RELEASE">Press Release</option>
+                  <option value="ANNOUNCEMENT">Announcement</option>
+                  <option value="EVENT">Event</option>
+                  <option value="REGULATORY_UPDATE">Regulatory Update</option>
+                  <option value="OTHER">Other</option>
+                </select>
               </div>
               <div>
                 <label className="text-sm font-medium text-gray-700">Content</label>
@@ -265,7 +270,7 @@ export default function NewsPage() {
               </button>
               <button
                 onClick={handleSave}
-                disabled={saving || !form.title.trim() || !form.content.trim()}
+                disabled={saving || !form.title.trim() || !form.content.trim() || !form.category}
                 className="px-4 py-2 text-sm rounded-lg bg-[#0073ae] text-white hover:bg-[#005f8f] disabled:opacity-50 flex items-center gap-2"
               >
                 {saving && <Loader2 className="h-4 w-4 animate-spin" />}

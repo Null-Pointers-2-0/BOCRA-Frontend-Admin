@@ -358,6 +358,23 @@ export default function TendersPage() {
                 <input type="text" value={form.reference_number} onChange={(e) => setForm((f) => ({ ...f, reference_number: e.target.value }))} className="w-full mt-1 px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#0073ae]" placeholder="e.g., BOCRA/TENDER/2025/001" />
               </div>
               <div>
+                <label className="text-sm font-medium text-gray-700">Category</label>
+                <select
+                  value={form.category}
+                  onChange={(e) => setForm((f) => ({ ...f, category: e.target.value }))}
+                  className="w-full mt-1 px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#0073ae] bg-white"
+                >
+                  <option value="">Select a category…</option>
+                  <option value="IT_SERVICES">IT Services</option>
+                  <option value="CONSULTING">Consulting</option>
+                  <option value="CONSTRUCTION">Construction</option>
+                  <option value="EQUIPMENT">Equipment</option>
+                  <option value="PROFESSIONAL">Professional Services</option>
+                  <option value="MAINTENANCE">Maintenance</option>
+                  <option value="OTHER">Other</option>
+                </select>
+              </div>
+              <div>
                 <label className="text-sm font-medium text-gray-700">Closing Date</label>
                 <input type="datetime-local" value={form.closing_date} onChange={(e) => setForm((f) => ({ ...f, closing_date: e.target.value }))} className="w-full mt-1 px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#0073ae]" />
               </div>
@@ -368,7 +385,7 @@ export default function TendersPage() {
             </div>
             <div className="flex gap-3 justify-end pt-4 border-t border-gray-200">
               <button onClick={() => setEditorOpen(false)} className="px-4 py-2 text-sm rounded-lg border border-gray-300 hover:bg-gray-50">Cancel</button>
-              <button onClick={handleSave} disabled={saving || !form.title.trim() || !form.description.trim()} className="px-4 py-2 text-sm rounded-lg bg-[#0073ae] text-white hover:bg-[#005f8f] disabled:opacity-50 flex items-center gap-2">
+              <button onClick={handleSave} disabled={saving || !form.title.trim() || !form.description.trim() || !form.category} className="px-4 py-2 text-sm rounded-lg bg-[#0073ae] text-white hover:bg-[#005f8f] disabled:opacity-50 flex items-center gap-2">
                 {saving && <Loader2 className="h-4 w-4 animate-spin" />}
                 {editingId ? "Update" : "Create"}
               </button>

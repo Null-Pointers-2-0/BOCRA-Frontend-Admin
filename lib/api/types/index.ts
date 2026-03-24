@@ -7,3 +7,4 @@ export * from "./tenders";
 export * from "./news";
 export * from "./analytics";
 export * from "./notifications";
+export * from "./domains";
