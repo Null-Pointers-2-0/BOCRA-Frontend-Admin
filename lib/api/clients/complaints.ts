@@ -11,6 +11,9 @@ import type {
 } from "../types";
 
 export const complaintsClient = {
+  counts: () =>
+    apiClient<{ total: number; new: number; active: number }>("/complaints/staff/counts/"),
+
   list: (params?: StaffComplaintListParams) =>
     apiClient<StaffComplaintListItem[]>("/complaints/staff/", {
       params: params as Record<string, string | number | boolean | undefined>,

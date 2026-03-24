@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { complaintsClient } from "@/lib/api/clients";
 import {
   LayoutDashboard,
   FileCheck,
@@ -76,6 +77,14 @@ export function Sidebar() {
     });
     return initial;
   });
+
+  const [complaintCount, setComplaintCount] = useState(0);
+
+  useEffect(() => {
+    complaintsClient.counts().then((res) => {
+      if (res.success && res.data) setComplaintCount(res.data.active);
+    });
+  }, [pathname]);
 
   const toggleGroup = (name: string) => {
     setOpenGroups((prev) => ({ ...prev, [name]: !prev[name] }));
@@ -172,7 +181,16 @@ export function Sidebar() {
               )}
             >
               <item.icon className="h-5 w-5 shrink-0" />
-              {!collapsed && item.name}
+              {!collapsed && (
+                <>
+                  <span className="flex-1">{item.name}</span>
+                  {item.name === "Complaints" && complaintCount > 0 && (
+                    <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-[#c60751] px-1.5 text-[10px] font-bold text-white">
+                      {complaintCount > 99 ? "99+" : complaintCount}
+                    </span>
+                  )}
+                </>
+              )}
             </Link>
           );
         })}
