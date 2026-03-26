@@ -20,6 +20,10 @@ const pageTitles: Record<string, string> = {
   "/cms/news": "News Articles",
   "/cms/publications": "Publications",
   "/cms/tenders": "Tenders",
+  "/coverage": "Network Coverage Map",
+  "/qoe": "Citizen QoE Reporter",
+  "/scorecard": "Live Operator Scorecard",
+  "/alerts": "Proactive Alert Subscriptions",
   "/users": "User Management",
   "/notifications": "Notifications",
 };

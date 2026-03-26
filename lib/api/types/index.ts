@@ -8,3 +8,7 @@ export * from "./news";
 export * from "./analytics";
 export * from "./notifications";
 export * from "./domains";
+export * from "./coverages";
+export * from "./qoe";
+export * from "./scorecard";
+export * from "./alerts";

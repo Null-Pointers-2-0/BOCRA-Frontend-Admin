@@ -7,3 +7,7 @@ export { newsClient } from "./news";
 export { analyticsClient } from "./analytics";
 export { notificationsClient } from "./notifications";
 export { domainsClient } from "./domains";
+export { coveragesClient } from "./coverages";
+export { qoeClient } from "./qoe";
+export { scorecardClient } from "./scorecard";
+export { alertsClient } from "./alerts";
