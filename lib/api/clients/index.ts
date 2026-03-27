@@ -11,3 +11,4 @@ export { coveragesClient } from "./coverages";
 export { qoeClient } from "./qoe";
 export { scorecardClient } from "./scorecard";
 export { alertsClient } from "./alerts";
+export { cybersecurityClient } from "./cybersecurity";

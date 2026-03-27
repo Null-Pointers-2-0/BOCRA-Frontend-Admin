@@ -12,3 +12,4 @@ export * from "./coverages";
 export * from "./qoe";
 export * from "./scorecard";
 export * from "./alerts";
+export * from "./cybersecurity";

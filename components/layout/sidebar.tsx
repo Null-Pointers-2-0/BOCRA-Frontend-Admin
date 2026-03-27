@@ -30,6 +30,7 @@ import {
   Map,
   Activity,
   Trophy,
+  ShieldAlert,
 } from "lucide-react";
 
 const navigation = [
@@ -66,6 +67,7 @@ const navigation = [
   { name: "Coverage Map", href: "/coverage", icon: Map },
   { name: "QoE Reporter", href: "/qoe", icon: Activity },
   { name: "Operator Scorecard", href: "/scorecard", icon: Trophy },
+  { name: "Cybersecurity", href: "/cybersecurity", icon: ShieldAlert },
   { name: "Alert Subscriptions", href: "/alerts", icon: BellRing },
   { name: "Users", href: "/users", icon: Users },
   { name: "Notifications", href: "/notifications", icon: Bell },
